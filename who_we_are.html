@@ -48,9 +48,25 @@
         <link href="assets2/css/odometer-theme-default.css" rel="stylesheet">
         <link href="assets2/css/nice-select.css" rel="stylesheet">
         <link href="assets2/css/style.css" rel="stylesheet">
+
+        
 </head>
 
 <body>
+    <div>
+        <!-- Zone d'affichage du message de bienvenue -->
+        <h1 id="greeting" style="color: black;">Bienvenue sur notre site !</h1>
+    </div>
+
+    <!-- Formulaire pour que l'utilisateur entre son nom -->
+    <div id="usernameForm">
+        <form onsubmit="setUserName(); return false;">
+            <label for="username" style="color: black;">Entrez votre nom : </label>
+            <input type="text" id="username" required style="color: black;" />
+            <button type="submit" style="color: black;">Soumettre</button>
+        </form>
+    </div>
+
 <!-- Preloader area start -->
 
 <!-- Preloader area end -->

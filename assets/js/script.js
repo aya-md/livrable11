@@ -463,3 +463,57 @@ $( document ).ready(function() {
 	//dupliquer le code suivant ou cas de besoin d'autres element de méme hauteur !
 	max_heightTxt('.col_mission ul');
 });
+
+
+// Fonction pour définir un cookie
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));  // Expiration du cookie après `days` jours
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/"; // Définit le cookie
+}
+
+
+// Fonction pour définir un cookie
+function setCookie(name, value, days) {
+	const d = new Date();
+	d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));  // Expiration du cookie après `days` jours
+	const expires = "expires=" + d.toUTCString();
+	document.cookie = name + "=" + value + ";" + expires + ";path=/"; // Définit le cookie
+}
+
+// Fonction pour obtenir un cookie par son nom
+function getCookie(name) {
+	const nameEQ = name + "=";
+	const ca = document.cookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+	}
+	return null;
+}
+
+// Fonction pour afficher le nom de l'utilisateur si le cookie existe
+window.onload = function() {
+	const userName = getCookie("username"); // Récupère le nom de l'utilisateur depuis le cookie
+	const greetingElement = document.getElementById("greeting");
+
+	if (userName) {
+		// Si un nom est stocké dans le cookie, afficher le message personnalisé
+		greetingElement.innerHTML = "Bienvenue, " + userName + "!";
+	} else {
+		// Si aucun nom n'est trouvé, afficher un message générique
+		greetingElement.innerHTML = "Bienvenue sur notre site !";
+	}
+}
+
+// Fonction pour enregistrer le nom de l'utilisateur dans un cookie
+function setUserName() {
+	const name = document.getElementById("username").value;
+	if (name) {
+		setCookie("username", name, 7);  // Enregistre le nom dans un cookie pendant 7 jours
+		document.getElementById("greeting").innerHTML = "Bienvenue, " + name + "!";
+		document.getElementById("usernameForm").style.display = "none"; // Cache le formulaire après soumission
+	}
+}
